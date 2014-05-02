@@ -122,30 +122,35 @@
 					</section>
 					<section>
 					<pre><code data-trim contenteditable>
+POST http://youseeu.com/lti
+lti_message_type: basic-lti-launch-request
 #where
 context_id: 46
-context_title: ''
+context_title: 'Course Name'
 #who
-lis_person_source_id: 1234455
+user_id: 1234455
+roles: 'Instructor'
+lis_person_name_family: 'Smith'
+lis_person_name_given: 'Samantha'
 #what
 custom_ref_id: 'asst-345'
 #trust
 oauth_consumer_key: 'mindtap'
-oauth_sign: 
+oauth_sign: '6mzAT1/8K9y3Bu2co417WT2g0Dc='
 					</code></pre>				
 
 					</section>
 					<section>
 						<h2>Verdict</h2>
 						<sp></p>
-						<small>http://www.anorak.co.uk/361901/in-pictures-2/thumbs-ammo-the-funniest-pictures-of-movie-guns-replaced-by-thumbs.html/
+						<small>
 						http://www.reactiongifs.us/thumbs-down-gladiator/
 					http://www.dailymail.co.uk/news/article-2296269/From-guns-thumbs-Film-fans-shoot-classic-movie-moments-weapons.html
 				http://somofos.com/wp-content/uploads/2012/04/borat-thumbs-up-1.jpeg</small>
 					</section>
 					<section>
 						<img class="nobkg" src='learningimpact_ysu/borat-thumbs-up-transparent.png'>
-						<small>http://somofos.com/wp-content/uploads/2012/04/borat-thumbs-up-1.jpeg</small>
+						<small>That is what Basic Launch is for</small>
 					</section>
 				</section>
 
@@ -166,33 +171,120 @@ oauth_sign:
 						<img class="nobkg" src="learningimpact_ysu/integration-01.svg">
 					</section>
 					<section>
+					<h2>1: Content Item Request</h2>
 					<pre><code data-trim contenteditable>
+POST http://youseeu.com/lti
+lti_message_type: ContentItemSelectionRequest
 #where
 context_id: 46
-context_title: ''
+context_title: 'Course Name'
 #who
-lis_person_source_id: 1234455
-#what
-custom_ref_id: 'asst-345'
+user_id: 1234455
+roles: 'Instructor'
+#flow continutation
+content_item_return_url: http://mindtap.com/nb/service/lti/contentItemSelectionReturn
+data: mindtap-continutation-data
 #trust
 oauth_consumer_key: 'mindtap'
-oauth_sign: 
+oauth_sign: '6mzAT1/8K9y3Bu2co417WT2g0Dc='
 					</code></pre>				
 
 					</section>
+
+					<section>
+					<h2>2: YouSeeU responds</h2>
+					<pre><code data-trim contenteditable>
+POST http://mindtap.com/nb/service/lti/contentItemSelectionReturn
+content-items: {
+     "@context": ["http://purl.imsglobal.org/ctx/lti/v1/ContentItemPlacement", 
+                  "http://mindtap.cengage.com/static/nb/jsonld/contentitem.jsonld"],
+     "@graph": [{
+         "@type": "ContentItemPlacement",
+         "placementOf": {
+             "@type": "LtiLink",
+             "mediaType": "application/vnd.ims.lti.v1.launch+json",
+             "title": "Subjective Assessment",
+             "activityRefId": "12ad5g",
+             "mtScorable": {
+                 "pointsPossible": 34.53
+             }
+         }
+     }]
+ }
+data: mindtap-continutation-data
+					</code></pre>				
+					</section>
+
+					<section>
+						<h2>3: Instructor submits</h2>
+						<p>...or cancel</p>
+					</section>
+					<section>
+						<h2>Limitations</h2>
+						<ul>
+							<li>No confirmation when truly added</li>
+							<li>No grading information</li>
+							<li>No Edit flow</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Content Item: more than LTI Links</h2>
+						<ul>
+							<li>Also for embedding (Rich Text Editor)</li>
+							<li>Images, video, HTML snippets, IFrames</li>
+							<li><a href="http://www.imsglobal.org/lti/" target="_blank">Draft Specifications</a></li>
+						</ul>
+					</section>
 					<section>
 						<h2>Verdict</h2>
-						<sp></p>
-						<small>http://www.anorak.co.uk/361901/in-pictures-2/thumbs-ammo-the-funniest-pictures-of-movie-guns-replaced-by-thumbs.html/
-						http://www.reactiongifs.us/thumbs-down-gladiator/
-					http://www.dailymail.co.uk/news/article-2296269/From-guns-thumbs-Film-fans-shoot-classic-movie-moments-weapons.html
-				http://somofos.com/wp-content/uploads/2012/04/borat-thumbs-up-1.jpeg</small>
 					</section>
 					<section>
-						<img class="nobkg" src='learningimpact_ysu/borat-thumbs-up-transparent.png'>
-						<small>http://somofos.com/wp-content/uploads/2012/04/borat-thumbs-up-1.jpeg</small>
+						<img class="nobkg" src='learningimpact_ysu/a-team-thumbs-up-ignazio-d.jpg'>
+						<small>Fills a key gap. Will evolve!</small>
 					</section>
 				</section>
+
+
+				<section>
+					<section>
+						<h2>Submission and Grading</h2>
+						<p>
+							As an Student, I need to know in MindTap the status of my activity, in progress, submitted, graded.
+						</p>
+						<a href="#" class="image navigate-down">
+							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+						</a>
+					</section>
+					<section>
+						<h2>Basic Outcome Service (the POXes)</h2>
+						<img class="nobkg" src="learningimpact_ysu/integration-05.svg">
+					</section>
+					<section>
+						<pre><code>
+POST http://youseeu.com/lti
+lti_message_type: basic-lti-launch-request
+#who, where, what, trust as before
+#Outcome
+lis_outcome_service_url: http://local.mindtap/nb/service/ltiOutcome/saveAttempt/
+lis_result_sourcedid: '3e39d9bd-77df-4cb4-8070-07ca76c75c52'
+ 						</code></pre>
+					</section>
+					<section>
+						<h2>States Mapping</h2>
+						<ul>
+							<li>In Progress: on 1st launch (attempt created)</li>
+							<li>Submitted: POX ReplaceResult, empty Result</li>
+							<li>Graded: POX ReplaceResult, 0-1 grade rescaled</li>
+							<li>Reset: POX DeleteResult</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Verdict</h2>
+					</section>
+					<section>
+						<img class="nobkg" src='learningimpact_ysu/spock_thumbs_up.jpg'>
+						<small>Too limited and clunky to grow into, but worked!</small>
+					</section>
 
 			</div>
 
