@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Integrating YouSeeU in MindTap using LTI</title>
+
+		<meta name="description" content="A presentation on Integrating YouSeeU in MindTap using LTI">
+		<meta name="author" content="Claude Vervoort">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="css/extra.css">
+
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<img class="onlyshadow" src='learningimpact_ysu/title.png'>
+					<h3>Using <b>LTI</b> to provide deep integration of YouSeeU Video Assessment in MindTap.</h3>
+					<ul>
+						<li>What worked</li>
+						<li>What was missed</li>
+					</ul>
+					<p>
+						<small><a href="email:claude.vervoort@cengage.com">Claude Vervoort</a> / Architect, <a href="http://www.cengage.com/mindtap">MindTap team</a></small>
+					</p>
+				</section>
+
+				<section>
+					<img class="nobkg" src='learningimpact_ysu/youseeu.png'>
+					<p>
+						<b>synchronous (live capture)</b> and <b>asynchronous</b> speech video delivery, recording and grading
+					</p>
+
+					<aside class="notes">
+
+					</aside>
+				</section>
+
+				<section>
+					<img class="nobkg" src='learningimpact_ysu/mindtap.png'>
+					<p>
+						<b>Courseware</b> platform assembling rich content and activities in a customizable environment.
+					</p>
+					<p>
+						<b>MindApps</b> are used to actually deliver Content and Activities.
+					</p>
+
+					<aside class="notes">
+
+					</aside>
+				</section>
+
+				<section>
+					<h1>Demo!</h1>
+
+					<aside class="notes">
+
+					</aside>
+				</section>
+
+				<section>
+					<h2>Standards at Play</h2>
+					<p>
+						Rating on how LTI played out for main integration points:
+					</p>
+					<ul>
+						<li>Launching an Assessment</li>
+						<li>Adding/Editing an Activity</li>
+						<li>Submission and Grading</li>
+						<li>Master and Courses</li>
+						<li>Roster</li>
+					</ul>
+					<aside class="notes">
+
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h2>Launching an Assessment</h2>
+						<p>
+							When clicking on the Learning Path, the right assessment opens in the right state for current user.
+						</p>
+						<a href="#" class="image navigate-down">
+							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+						</a>
+					</section>
+					<section>
+						<h2>Basic LTI Launch</h2>
+						<img class="nobkg" src="learningimpact_ysu/integration-03.svg">
+					</section>
+					<section>
+					<pre><code data-trim contenteditable>
+#where
+context_id: 46
+context_title: ''
+#who
+lis_person_source_id: 1234455
+#what
+custom_ref_id: 'asst-345'
+#trust
+oauth_consumer_key: 'mindtap'
+oauth_sign: 
+					</code></pre>				
+
+					</section>
+					<section>
+						<h2>Verdict</h2>
+						<sp></p>
+						<small>http://www.anorak.co.uk/361901/in-pictures-2/thumbs-ammo-the-funniest-pictures-of-movie-guns-replaced-by-thumbs.html/
+						http://www.reactiongifs.us/thumbs-down-gladiator/
+					http://www.dailymail.co.uk/news/article-2296269/From-guns-thumbs-Film-fans-shoot-classic-movie-moments-weapons.html
+				http://somofos.com/wp-content/uploads/2012/04/borat-thumbs-up-1.jpeg</small>
+					</section>
+					<section>
+						<img class="nobkg" src='learningimpact_ysu/borat-thumbs-up-transparent.png'>
+						<small>http://somofos.com/wp-content/uploads/2012/04/borat-thumbs-up-1.jpeg</small>
+					</section>
+				</section>
+
+
+
+				<section>
+					<section>
+						<h2>Adding an Activity</h2>
+						<p>
+							As an editor or an Instructor, I want an integrated authoring environment to add or edit YouSeeU activities in MindTap.
+						</p>
+						<a href="#" class="image navigate-down">
+							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+						</a>
+					</section>
+					<section>
+						<h2>Content Item Request Launch</h2>
+						<img class="nobkg" src="learningimpact_ysu/integration-01.svg">
+					</section>
+					<section>
+					<pre><code data-trim contenteditable>
+#where
+context_id: 46
+context_title: ''
+#who
+lis_person_source_id: 1234455
+#what
+custom_ref_id: 'asst-345'
+#trust
+oauth_consumer_key: 'mindtap'
+oauth_sign: 
+					</code></pre>				
+
+					</section>
+					<section>
+						<h2>Verdict</h2>
+						<sp></p>
+						<small>http://www.anorak.co.uk/361901/in-pictures-2/thumbs-ammo-the-funniest-pictures-of-movie-guns-replaced-by-thumbs.html/
+						http://www.reactiongifs.us/thumbs-down-gladiator/
+					http://www.dailymail.co.uk/news/article-2296269/From-guns-thumbs-Film-fans-shoot-classic-movie-moments-weapons.html
+				http://somofos.com/wp-content/uploads/2012/04/borat-thumbs-up-1.jpeg</small>
+					</section>
+					<section>
+						<img class="nobkg" src='learningimpact_ysu/borat-thumbs-up-transparent.png'>
+						<small>http://somofos.com/wp-content/uploads/2012/04/borat-thumbs-up-1.jpeg</small>
+					</section>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

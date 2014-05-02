@@ -1,0 +1,12 @@
+.reveal section img.onlyshadow {
+    padding: 0;
+    border: 0;
+    background:none;
+}
+
+.reveal section img.nobkg {
+    padding: 0;
+    border: 0;
+    background:none;
+    box-shadow: none;
+}
