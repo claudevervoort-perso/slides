@@ -52,7 +52,7 @@
 						<li>What was missed</li>
 					</ul>
 					<p>
-						<small><a href="email:claude.vervoort@cengage.com">Claude Vervoort</a> / Architect, <a href="http://www.cengage.com/mindtap">MindTap team</a></small>
+						<small><a href="email:claude.vervoort@cengage.com">Claude Vervoort</a> - Architect, <a href="http://www.cengage.com/mindtap">MindTap team</a></small>
 					</p>
 				</section>
 
@@ -134,6 +134,8 @@ lis_person_name_family: 'Smith'
 lis_person_name_given: 'Samantha'
 #what
 custom_ref_id: 'asst-345'
+custom_activity_enddate:
+custom_course_enddate: 
 #trust
 oauth_consumer_key: 'mindtap'
 oauth_sign: '6mzAT1/8K9y3Bu2co417WT2g0Dc='
@@ -142,15 +144,10 @@ oauth_sign: '6mzAT1/8K9y3Bu2co417WT2g0Dc='
 					</section>
 					<section>
 						<h2>Verdict</h2>
-						<sp></p>
-						<small>
-						http://www.reactiongifs.us/thumbs-down-gladiator/
-					http://www.dailymail.co.uk/news/article-2296269/From-guns-thumbs-Film-fans-shoot-classic-movie-moments-weapons.html
-				http://somofos.com/wp-content/uploads/2012/04/borat-thumbs-up-1.jpeg</small>
 					</section>
 					<section>
 						<img class="nobkg" src='learningimpact_ysu/borat-thumbs-up-transparent.png'>
-						<small>That is what Basic Launch is for</small>
+						<p><small>That is what Basic Launch is for</small></p>
 					</section>
 				</section>
 
@@ -175,15 +172,15 @@ oauth_sign: '6mzAT1/8K9y3Bu2co417WT2g0Dc='
 					<pre><code data-trim contenteditable>
 POST http://youseeu.com/lti
 lti_message_type: ContentItemSelectionRequest
+#add flow continutation
+content_item_return_url: http://mindtap.com/nb/service/lti/contentItemSelectionReturn
+data: mindtap-continutation-data
 #where
 context_id: 46
 context_title: 'Course Name'
 #who
 user_id: 1234455
 roles: 'Instructor'
-#flow continutation
-content_item_return_url: http://mindtap.com/nb/service/lti/contentItemSelectionReturn
-data: mindtap-continutation-data
 #trust
 oauth_consumer_key: 'mindtap'
 oauth_sign: '6mzAT1/8K9y3Bu2co417WT2g0Dc='
@@ -216,7 +213,8 @@ data: mindtap-continutation-data
 					</section>
 
 					<section>
-						<h2>3: Instructor submits</h2>
+						<h2>3: Back in Mindtap,</h2>
+						<p>Instructor submits</p>
 						<p>...or cancel</p>
 					</section>
 					<section>
@@ -240,7 +238,7 @@ data: mindtap-continutation-data
 					</section>
 					<section>
 						<img class="nobkg" src='learningimpact_ysu/a-team-thumbs-up-ignazio-d.jpg'>
-						<small>Fills a key gap. Will evolve!</small>
+						<p><small>Fills a key gap. Will evolve!</small></p>
 					</section>
 				</section>
 
@@ -269,22 +267,144 @@ lis_outcome_service_url: http://local.mindtap/nb/service/ltiOutcome/saveAttempt/
 lis_result_sourcedid: '3e39d9bd-77df-4cb4-8070-07ca76c75c52'
  						</code></pre>
 					</section>
+
+					<section>
+						<h2>POX example</h2>
+						<pre><code>
+  <imsx_POXBody>
+    <replaceResultRequest>
+      <resultRecord>
+        <sourcedGUID>
+          <sourcedId>3124567</sourcedId>
+        </sourcedGUID>
+        <result>
+          <resultScore>
+            <language>en</language>
+            <textString>0.92</textString>
+          </resultScore>
+        </result>
+      </resultRecord>
+    </replaceResultRequest>
+  </imsx_POXBody>
+ 						</code></pre>
+					</section>
+
 					<section>
 						<h2>States Mapping</h2>
 						<ul>
 							<li>In Progress: on 1st launch (attempt created)</li>
 							<li>Submitted: POX ReplaceResult, empty Result</li>
 							<li>Graded: POX ReplaceResult, 0-1 grade rescaled</li>
-							<li>Reset: POX DeleteResult</li>
+							<li>Reset (YSU initiated): POX DeleteResult</li>
+							<li>Reset (MindTap initiated): Callback Proprietary</li>
 						</ul>
+						
+					</section>
+					<section>
+						<h2>Graded by <span style='color:#F82'>System</span></h2>
+						<p>No information about the actor :(</p>
 					</section>
 					<section>
 						<h2>Verdict</h2>
 					</section>
 					<section>
 						<img class="nobkg" src='learningimpact_ysu/spock_thumbs_up.jpg'>
-						<small>Too limited and clunky to grow into, but worked!</small>
+						<small>Too limited and clunky to grow into, but worked! Looking forward to <span style="color:#F82">Rich Outcomes</span>.</small>
 					</section>
+				</section>
+
+
+
+
+
+				<section>
+					<section>
+						<h2>Masters and Courses</h2>
+						<p>As an Instructor, I want a course with great content and activities
+						   that I can then customize</p>
+					</section>
+					<section>
+						<h2>=> Each course is a modifiable copy of a Master</h2>
+						<img class="nobkg" src="learningimpact_ysu/integration-02.svg">
+					</section>
+					<section>
+						<h2>Source Context</h2>
+											<pre><code data-trim contenteditable>
+POST http://youseeu.com/lti
+lti_message_type: basic-lti-launch-request
+#where
+context_id: 46
+#on every launch, used to do Lazy copy of YouSeeU context
+source_context_id: 34
+					</code></pre>		
+					</section>
+					<section>
+						<h2>Verdict</h2>
+					</section>
+					<section>
+						<img class="nobkg" src='learningimpact_ysu/spock_thumbs_up.jpg'>
+						<small>Proprietary semantics using LTI plumbing</small>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Roster</h2>
+						<p>As an Instructor, I need to setup group activities in advance. Late enrollment on 1st student launch is not enough.</p>
+					</section>
+					<section>
+						<h2>MindTap ROSTER Service</h2>
+						<pre><code data-trim contenteditable>
+# All Course enrollment
+GET http://{mindtap}/roster/{contextId}
+
+# Feed like Pull api for update
+GET http://{mindtap}/roster/{contextId}?since={unix_timestamp}
+
+#secured with simple HTTP Header signature using LTI Shared Secret
+						</code></pre>	
+					</section>
+					<section>
+						<h2>Verdict</h2>
+					</section>
+					<section>
+						<img class="nobkg" src='learningimpact_ysu/thumbs_down_gladiator.gif'>
+						<p><small>But bot for long! Membership Service cooking...</small></p>
+					</section>
+				</section>
+
+
+
+
+				<section>
+					<section>
+						<h2>so, final Verdict?</h2>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Awesome :)</h2>
+						<ul>
+							<li>Bootstrap integration (basic integration quickly up and running)</li>
+							<li>Lingua Franca</li>
+							<li>A model to grow into</li>
+							<li>Experience can be shared for next integrations and the community</li>
+						<ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Q & A</h1>
+
+						<small>images from: 
+						http://www.reactiongifs.us/thumbs-down-gladiator/
+					http://www.dailymail.co.uk/news/article-2296269/From-guns-thumbs-Film-fans-shoot-classic-movie-moments-weapons.html
+				http://somofos.com/wp-content/uploads/2012/04/borat-thumbs-up-1.jpeg</small>
+
+					</section>
+				</section>
 
 			</div>
 
