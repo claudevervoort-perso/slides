@@ -1,0 +1,21 @@
+{
+    "name": "WISE.Demo",
+    "displayName": "WISE Demo",
+    "version": "1.0",
+    "creator": "Cengage Learning",
+    "authScheme": "NONE",
+    "rootURI": "http://localhost/ztest/",
+    "helpURI": "/help.html",
+                
+    "dockItems": {
+        "wise": {
+            "icon": "/img/ztest_wise.png",
+            "label": "WISE Dashboard",
+            "supportsMobile":true,
+            "action": {
+                "uri": "/ltichamber"
+            }
+        }
+    }
+
+}

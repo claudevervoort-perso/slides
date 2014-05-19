@@ -10,3 +10,7 @@
     background:none;
     box-shadow: none;
 }
+
+h2.firstLetter::first-letter {
+  color: orange;
+}
